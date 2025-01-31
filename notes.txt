@@ -1,0 +1,7 @@
+https://open-meteo.com/
+https://github.com/libcpr/cpr
+https://github.com/stephenberry/glaze
+https://stackoverflow.com/questions/997946/how-to-get-current-time-and-date-in-c
+https://stackoverflow.com/questions/22545029/makefile-how-to-correctly-include-header-file-and-its-directory
+https://github.com/clementvidon/Makefile_tutor?tab=readme-ov-file#version-5
+https://www.reddit.com/r/raylib/comments/u1cmwk/what_are_the_source_and_dest_arguments_in/
