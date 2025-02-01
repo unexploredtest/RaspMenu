@@ -34,14 +34,16 @@ class PicsMenu : public MainMenu {
         // static const int screenWidth = 320;
         // static const int screenHeight = 240;
         // static const int MAX_PICS = 20;
-        static const int pics_hiz = 2;
-        static const int pic_ver = 3;
+        static const unsigned int pics_hiz = 2;
+        static const unsigned int pic_ver = 3;
 
         void loadTextures();
         void unloadTextures();
 
-        int currentStartPic = 0;
-        int maxPicCount = 0;
+        unsigned int currentStartPic = 0;
+        unsigned int selectedPic = 0;
+        bool isSelected = false;
+        unsigned int maxPicCount = 0;
         void loadPics(int lower, int upper);
         void unloadPics();
         std::string picsPath;

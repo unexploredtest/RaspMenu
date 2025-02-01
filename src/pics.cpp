@@ -34,6 +34,14 @@ void PicsMenu::draw(WinSpec winSpec) {
     float pic_height = screenHeight / pics_hiz;
     float pic_width = (screenWidth - offset.x) / pic_ver;
 
+    if(this->isSelected) {
+        Rectangle srcRec = {0.0f, 0.0f, this->currentPics[this->selectedPic].width, this->currentPics[this->selectedPic].height};
+        Rectangle desRec = {0, 0, screenWidth, screenHeight};
+        Vector2 org = {0.0f, 0.0f};
+        DrawTexturePro(this->currentPics[this->selectedPic], srcRec, desRec, org, 0, WHITE);
+        return;
+    }
+
     int i = 0;
     for(int y = 0; y < pics_hiz; y++) {
         for(int x = 0; x < pic_ver; x++) {
@@ -41,7 +49,11 @@ void PicsMenu::draw(WinSpec winSpec) {
                 Rectangle srcRec = {0.0f, 0.0f, this->currentPics[i].width, this->currentPics[i].height};
                 Rectangle desRec = {offset.x + pic_width*x, pic_height*y, pic_width, pic_height};
                 Vector2 org = {0.0f, 0.0f};
-                DrawTexturePro(this->currentPics[i], srcRec, desRec, org, 0, WHITE);
+                if(this->fullScreen && i == this->selectedPic) {
+                    DrawTexturePro(this->currentPics[i], srcRec, desRec, org, 0, RED);
+                } else {
+                    DrawTexturePro(this->currentPics[i], srcRec, desRec, org, 0, WHITE);
+                }
                 i++;
             }
         }
@@ -63,8 +75,20 @@ bool PicsMenu::input() {
     }
 
     if(this->fullScreen) {
+
+        
         if(IsKeyPressed(KEY_BACKSPACE)) {
-            this->fullScreen = false;
+            if(this->isSelected) {
+                this->isSelected = false;
+            } else {
+                this->fullScreen = false;
+            }
+        }
+
+        if(IsKeyPressed(KEY_ENTER)) {
+            if(!this->isSelected) {
+                this->isSelected = true;
+            }
         }
 
         if(IsKeyPressed(KEY_RIGHT)) {
@@ -82,6 +106,24 @@ bool PicsMenu::input() {
                 this->loadPics(this->currentStartPic*(pic_ver*pics_hiz), (this->currentStartPic+1)*(pic_ver*pics_hiz));
             }
         }
+
+        if(IsKeyPressed(KEY_W)) {
+            this->selectedPic = (this->selectedPic - this->pic_ver) % (this->pic_ver * this->pics_hiz);
+        }
+
+        if(IsKeyPressed(KEY_S)) {
+            this->selectedPic = (this->selectedPic + this->pic_ver) % (this->pic_ver * this->pics_hiz);
+        }
+
+        if(IsKeyPressed(KEY_D)) {
+            this->selectedPic = (this->selectedPic + 1) % (this->pic_ver * this->pics_hiz);
+        }
+
+        if(IsKeyPressed(KEY_A)) {
+            this->selectedPic = (this->selectedPic - 1) % (this->pic_ver * this->pics_hiz);
+        }
+
+
         return false;
     }
 }
