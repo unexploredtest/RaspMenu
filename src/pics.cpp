@@ -19,11 +19,12 @@ void PicsMenu::runBackround() {
 void PicsMenu::stopBackround() {
 }
 
-void PicsMenu::draw(Vector2 offset = {0, 40.0f}) {
+void PicsMenu::draw(WinSpec winSpec) {
     // each y is 80, we have 3 ys
     // each x is 130, we have 2 xs
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+    const int screenWidth = winSpec.resolution.x;
+    const int screenHeight = winSpec.resolution.y;
+    Vector2 offset = winSpec.offset;
 
     // float offset = 40.0f;
     // if(this->fullScreen) {

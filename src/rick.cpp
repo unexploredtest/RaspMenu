@@ -19,14 +19,19 @@ void RickMenu::runBackround() {
 void RickMenu::stopBackround() {
 }
 
-void RickMenu::draw(Vector2 offset = {0.0f, 0.0f}) {
+void RickMenu::draw(WinSpec winSpec) {
+    Vector2 resolution = winSpec.resolution;
     if(this->currentRickFrame <= this->RICK_FRAME_DURATION) {
         int currentFrame = (this->currentRickFrame / 6) % 20;
-        DrawTexture(this->texts[currentFrame], 0, 0, WHITE);
+        Rectangle srcRec = {0.0f, 0.0f, this->texts[currentFrame].width, this->texts[currentFrame].height};
+        Rectangle desRec = {0, 0, resolution.x, resolution.y};
+        Vector2 org = {0.0f, 0.0f};
+        DrawTexturePro(this->texts[currentFrame], srcRec, desRec, org, 0, WHITE);
+        // DrawTexture(this->texts[currentFrame], 0, 0, WHITE);
 
         this->currentRickFrame++;
     } else {
-        DrawText("You got Rick Rolled!", 120, 120, 20, BLACK);
+        DrawText("You got Rick Rolled!", 100, 120, 20, BLACK);
     }
 
 }

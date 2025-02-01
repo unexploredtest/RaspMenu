@@ -94,6 +94,7 @@ void drawAbout() {
 // Program main entry point
 //------------------------------------------------------------------------------------
 void runApp(int screenWidth, int screenHeight) {
+    
     std::vector<std::shared_ptr<MainMenu>> pages {
         std::shared_ptr<MainMenu>(new HomeMenu()),
         std::shared_ptr<MainMenu>(new RickMenu()),
@@ -102,7 +103,14 @@ void runApp(int screenWidth, int screenHeight) {
     runPagesBackground(pages);
     std::vector<Texture2D> pagesIcon = {};
 
-    Vector2 offset = {screenWidth / 8, 0.0f};
+    const int sidebarSize = 8;
+
+    Vector2 resolution = {screenWidth, screenHeight};
+    Vector2 baseOffset = {screenWidth / sidebarSize, 0.0f};
+    Vector2 noOffset = {0.0f, 0.0f};
+
+    WinSpec fullWindow = {resolution, noOffset};
+    WinSpec sideWindow = {resolution, baseOffset};
 
     int frameCounter = 0;
     InitWindow(screenWidth, screenHeight, "Raspberry Pi Menu");
@@ -140,7 +148,10 @@ void runApp(int screenWidth, int screenHeight) {
             currentMenu = pages[currentPageIndex];
             currentMenu->start();
         }
-        
+
+        if(currentMenu->fullScreen) {
+
+        }   
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -150,8 +161,11 @@ void runApp(int screenWidth, int screenHeight) {
 
             if(!currentMenu->fullScreen) {
                 drawSideBar(pages, pagesIcon, currentPageIndex);
+                currentMenu->draw(sideWindow);
+            } else {
+                currentMenu->draw(fullWindow);
             }
-            currentMenu->draw(offset);
+            
 
         EndDrawing();
         // DrawFB(320, 240);

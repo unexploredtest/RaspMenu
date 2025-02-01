@@ -36,7 +36,7 @@ class HomeMenu : public MainMenu {
         void stop() override;
         void runBackround() override;
         void stopBackround() override;
-        void draw(Vector2 offset) override;
+        void draw(WinSpec winSpec) override;
         bool input() override;
         std::string getPagesPath() override;
 

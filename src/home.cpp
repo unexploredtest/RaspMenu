@@ -31,9 +31,9 @@ void HomeMenu::start() {
 
 }
 
-void HomeMenu::draw(Vector2 offset = {0.0f, 0.0f}) {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+void HomeMenu::draw(WinSpec winSpec) {
+    const int screenWidth = winSpec.resolution.x;
+    const int screenHeight = winSpec.resolution.y;
 
     std::time_t t = std::time(0);
     std::tm* now = std::localtime(&t);

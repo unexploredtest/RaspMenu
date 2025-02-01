@@ -25,6 +25,11 @@ enum Page {
     MAX
 };
 
+// struct WinSpec {
+//     Vector2 resolution;
+//     Vector2 offset;
+// };
+
 int getIntFromPage(Page page);
 int getMaxPages();
 
