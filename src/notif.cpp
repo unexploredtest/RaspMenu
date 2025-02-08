@@ -130,5 +130,5 @@ void NotifMenu::unloadTextures() {
 }
 
 std::string NotifMenu::getPagesPath() {
-    return "assests/play.png";
+    return "assests/play_40x40.png";
 }
