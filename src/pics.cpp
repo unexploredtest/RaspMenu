@@ -137,7 +137,7 @@ void PicsMenu::loadPics(int lower, int upper) {
     int i = 0;
     for (const auto& entry : fs::directory_iterator(this->picsPath)) {
         std::string filename = entry.path().filename();
-        if(fs::is_directory(entry.path()) || !ends_with(filename, ".png")) {
+        if(fs::is_directory(entry.path()) || (!ends_with(filename, ".png") && !ends_with(filename, ".jpg"))) {
             continue;
         }
         if(i >= upper || i < lower) {
