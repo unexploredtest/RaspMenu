@@ -97,8 +97,9 @@ void runApp(int screenWidth, int screenHeight) {
     
     std::vector<std::shared_ptr<MainMenu>> pages {
         std::shared_ptr<MainMenu>(new HomeMenu()),
-        std::shared_ptr<MainMenu>(new RickMenu()),
         std::shared_ptr<MainMenu>(new PicsMenu("pics")),
+        std::shared_ptr<MainMenu>(new NotifMenu("https://inv.nadeko.net/feed/channel/UCCezIgC97PvUuR4_gbFUs5g")),
+        std::shared_ptr<MainMenu>(new RickMenu()),
     };
     runPagesBackground(pages);
     std::vector<Texture2D> pagesIcon = {};

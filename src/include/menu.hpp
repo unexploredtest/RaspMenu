@@ -14,6 +14,7 @@
 #include "rick.hpp"
 #include "home.hpp"
 #include "pics.hpp"
+#include "notif.hpp"
 #include "common.hpp"
 
 enum Page {

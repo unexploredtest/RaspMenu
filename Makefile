@@ -27,7 +27,7 @@ NAME        := RaspMenu
 # LDLIBS      libraries name
 
 
-LIBS        := raylib cpr
+LIBS        := raylib cpr pugixml
 
 INCS        := src/include
 
